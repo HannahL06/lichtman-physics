@@ -49,7 +49,6 @@ public class Force {
     }
 
     /**
-     * multiply x and y by the scale value
      *
      * @return a new force
      */
