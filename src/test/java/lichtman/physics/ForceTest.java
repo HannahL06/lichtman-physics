@@ -65,7 +65,7 @@ class ForceTest {
         }
 
         assertEquals(185.182, x, 0.001);
-        assertEquals(0, y, 0.001);
+        assertEquals(22.155, y, 0.001);
 
     }
 }

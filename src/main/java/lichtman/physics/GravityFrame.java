@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class GravityFrame extends JFrame {
     public GravityFrame() {
-        setSize(300, 400);
+        setSize(600, 600);
         setTitle("Gravity Frames");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 

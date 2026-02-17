@@ -50,6 +50,7 @@ public class Force {
 
     /**
      * multiply x and y by the scale value
+     *
      * @return a new force
      */
     Force scale(double scale) {

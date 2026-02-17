@@ -8,7 +8,7 @@ public class GravityComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        drawGravity(g, 37.0365, 28.9360, 1);
+        drawGravity(g, 37.0365, 28.9360, .001);
     }
 
     private void drawGravity(Graphics gg, double gx, double gy, double increment) {
@@ -19,15 +19,13 @@ public class GravityComponent extends JComponent {
         double x = 0;
         double y = 0;
 
-        for (double i = 0; x >= 0; i += increment) {
+        for (double i = 0; y >= 0; i++) {
             gf = gf.addForces(scaledGravity);
             Force scaledF1 = gf.scale(increment);
             x += scaledF1.getX();
             y += scaledF1.getY();
 
-
-
-            gg.fillOval((int) x, (int) y, 1, 1);
+            gg.drawOval((int) x, (getHeight() - (int) y), 2, 2);
         }
     }
 }
