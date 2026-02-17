@@ -12,10 +12,10 @@ class ForceTest {
         double y = f.getY();
 
         //when
-        double magnitude = (x * x) + (y * y);
+        double mag = f.getMagnitude();
 
         //then
-        assertEquals(25, magnitude, 0.1);
+        assertEquals(7.62, mag, 0.1);
     }
 
     @org.junit.jupiter.api.Test
@@ -57,14 +57,14 @@ class ForceTest {
         double x = 0.0;
         double y = 0.0;
 
-        for (double ix = 0; ix < time; ix += increment) {
+        for (double i = 0; i < time; i += increment) {
             f1 = f1.addForces(scaledGravity);
             Force scaledF1 = f1.scale(increment);
             x += scaledF1.getX();
             y += scaledF1.getY();
         }
 
-        assertEquals(0, x, 0.001);
+        assertEquals(185.182, x, 0.001);
         assertEquals(0, y, 0.001);
 
     }

@@ -9,7 +9,7 @@ public class Force {
     public Force(double myX, double myY) {
         x = myX;
         y = myY;
-        magnitude = (Math.sqrt((x * x) + (y * y)));
+        magnitude = Math.sqrt((x * x) + (y * y));
         degrees = Math.toDegrees(Math.atan2(y, x));
     }
 

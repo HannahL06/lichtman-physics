@@ -14,6 +14,8 @@ public class GravityFrame extends JFrame {
         add(new GravityComponent());
     }
 
+
+
     public static void main(String[] args) {
         GravityFrame frame = new GravityFrame();
         frame.setVisible(true);
