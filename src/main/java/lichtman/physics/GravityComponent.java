@@ -8,6 +8,9 @@ public class GravityComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        //set origin to bottom left corner
+        g.translate(0, getHeight());
+
         drawGravityOnForce(g, 37.0365, 28.9360, .001);
     }
 
@@ -25,7 +28,7 @@ public class GravityComponent extends JComponent {
             x += scaledF1.getX();
             y += scaledF1.getY();
 
-            gg.drawOval((int) x, (getHeight() - (int) y), 2, 2);
+            gg.drawOval((int) x, ((int) -y), 2, 2);
         }
     }
 }
