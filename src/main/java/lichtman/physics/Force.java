@@ -40,18 +40,11 @@ public class Force {
         return "x= " + x + " , y= " + y + " magnitude= " + magnitude + " , degrees= " + degrees;
     }
 
-    /**
-     * @return a new force
-     */
-    Force scale(double scale) {
+    public Force scale(double scale) {
         return new Force((x * scale), (y * scale));
     }
 
-
-    /**
-     * @return a new force proportionate to this force
-     */
-    Force normalize() {
+    public Force normalize() {
         return new Force((x / magnitude), (y / magnitude));
     }
 
