@@ -29,14 +29,6 @@ public class Force {
         return y;
     }
 
-    public void setX(double myX) {
-        x = myX;
-    }
-
-    public void setY(double myY) {
-        y = myY;
-    }
-
     public Force addForces(Force otherForce) {
         double newX = x + otherForce.getX();
         double newY = y + otherForce.getY();
@@ -49,7 +41,6 @@ public class Force {
     }
 
     /**
-     *
      * @return a new force
      */
     Force scale(double scale) {

@@ -8,10 +8,10 @@ public class GravityComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        drawGravity(g, 37.0365, 28.9360, .001);
+        drawGravityOnForce(g, 37.0365, 28.9360, .001);
     }
 
-    private void drawGravity(Graphics gg, double gx, double gy, double increment) {
+    private void drawGravityOnForce(Graphics gg, double gx, double gy, double increment) {
         Force gf = new Force(gx, gy);
         Force gravity = new Force(0, -9.8);
         Force scaledGravity = gravity.scale(increment);

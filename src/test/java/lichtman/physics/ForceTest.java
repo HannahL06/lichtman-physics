@@ -1,10 +1,11 @@
 package lichtman.physics;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ForceTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getMagnitude() {
         //given
         Force f = new Force(7, 3);
@@ -18,7 +19,7 @@ class ForceTest {
         assertEquals(7.62, mag, 0.1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void addForces() {
         //given
         Force f1 = new Force(3, 4);
@@ -32,7 +33,7 @@ class ForceTest {
         assertEquals(7, f3.getY(), 0.1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getDegrees() {
         // given
         Force f = new Force(3, 4);
@@ -44,7 +45,7 @@ class ForceTest {
         assertEquals(53.13, degrees, 0.1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void gravity() {
 
         Force f1 = new Force(37.0365, 28.9360);
