@@ -1,6 +1,7 @@
 package lichtman.physics;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ForceTest {
@@ -58,7 +59,7 @@ class ForceTest {
         double x = 0.0;
         double y = 0.0;
 
-        for (double i = 0; i < time; i += increment) {
+        for (double i = 0; i < time; i++) {
             f1 = f1.addForces(scaledGravity);
             Force scaledF1 = f1.scale(increment);
             x += scaledF1.getX();
@@ -69,4 +70,7 @@ class ForceTest {
         assertEquals(22.155, y, 0.001);
 
     }
+
+    //@Test
+    //void apply() {}
 }
