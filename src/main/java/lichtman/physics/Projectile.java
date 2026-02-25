@@ -22,13 +22,13 @@ public class Projectile {
     }
 
     public Force getForce() {
-        return force;
+        return new Force(force.getX(), force.getY());
     }
 
-    public void apply(double time) {
-        Force scaledGravity = GRAVITY.scale(time);
+    public void apply(double inc) {
+        Force scaledGravity = GRAVITY.scale(inc);
         force = force.addForces(scaledGravity);
-        Force scaledForce = force.scale(time);
+        Force scaledForce = force.scale(inc);
         x += scaledForce.getX();
         y += scaledForce.getY();
     }

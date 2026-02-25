@@ -1,10 +1,10 @@
 package lichtman.physics;
 
 public class Force {
-    private double x;
-    private double y;
     private final double magnitude;
     private final double degrees;
+    private final double x;
+    private final double y;
 
     public Force(double myX, double myY) {
         x = myX;
