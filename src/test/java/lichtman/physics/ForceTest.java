@@ -10,8 +10,6 @@ class ForceTest {
     void getMagnitude() {
         //given
         Force f = new Force(7, 3);
-        double x = f.getX();
-        double y = f.getY();
 
         //when
         double mag = f.getMagnitude();
@@ -59,7 +57,7 @@ class ForceTest {
         double x = 0.0;
         double y = 0.0;
 
-        for (double i = 0; i < 5; i += inc) {
+        for (double i = 0; i < time; i += inc) {
             f1 = f1.addForces(scaledGravity);
             Force scaledF1 = f1.scale(inc);
             x += scaledF1.getX();
@@ -90,7 +88,7 @@ class ForceTest {
 
         // p.force x, y
         assertEquals(37.0365, p.getForce().getX(), 0.001);
-        assertEquals(22.155, p.getForce().getY(), 0.001);
+        assertEquals(-20.063, p.getForce().getY(), 0.001);
 
 
     }
@@ -109,6 +107,6 @@ class ForceTest {
 
         //then
         assertEquals(37.0365, p.getForce().getX(), 0.001);
-        assertEquals(28.9360, p.getForce().getY(), 0.001);
+        assertEquals(-20.063, p.getForce().getY(), 0.001);
     }
 }

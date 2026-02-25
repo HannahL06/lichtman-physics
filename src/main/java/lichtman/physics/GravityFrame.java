@@ -60,13 +60,6 @@ public class GravityFrame extends JFrame {
     public static void main(String[] args) {
         GravityFrame frame = new GravityFrame();
         frame.setVisible(true);
-
-        Projectile p = new Projectile(0, 0, new Force(37.0365, 28.9360));
-        for (double i = 0; i < 5; i += 0.001) {
-            p.apply(0.001);
-        }
-
-        System.out.println("x= " + p.getX() + ", y= " + p.getY());
     }
 }
 
