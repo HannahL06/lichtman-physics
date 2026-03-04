@@ -66,11 +66,11 @@ public class GravityFrame extends JFrame {
         JPanel northPanel = new JPanel();
 
         northPanel.add(xLabel);
-        northPanel.add(gravityController.getXField());
+        northPanel.add(gravityController.getxField());
         northPanel.add(yLabel);
-        northPanel.add(gravityController.getYField());
+        northPanel.add(gravityController.getyField());
         northPanel.add(tLabel);
-        northPanel.add(gravityController.getTField());
+        northPanel.add(gravityController.gettField());
         northPanel.add(button);
         northPanel.add(gravityController.getMagLabel());
         northPanel.add(gravityController.getAngleLabel());

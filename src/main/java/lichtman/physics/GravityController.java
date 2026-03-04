@@ -5,26 +5,26 @@ import java.awt.event.MouseEvent;
 
 // controller job - takes input, modifies the model, and update the views.
 public class GravityController {
-    GravityComponent gravComp;
-    JTextField xField = new JTextField("50");
-    JTextField yField = new JTextField("50");
-    JTextField tField = new JTextField("15");
-    JLabel angleLabel = new JLabel(" ");
-    JLabel magLabel = new JLabel(" ");
+    private final GravityComponent gravComp;
+    private final JTextField xField = new JTextField("50");
+    private final JTextField yField = new JTextField("50");
+    private final JTextField tField = new JTextField("15");
+    private final JLabel angleLabel = new JLabel(" ");
+    private final JLabel magLabel = new JLabel(" ");
 
     public GravityController(GravityComponent gc) {
         gravComp = gc;
     }
 
-    public JTextField getXField() {
+    public JTextField getxField() {
         return xField;
     }
 
-    public JTextField getYField() {
+    public JTextField getyField() {
         return yField;
     }
 
-    public JTextField getTField() {
+    public JTextField gettField() {
         return tField;
     }
 
