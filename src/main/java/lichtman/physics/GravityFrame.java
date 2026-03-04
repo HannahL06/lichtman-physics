@@ -14,25 +14,34 @@ public class GravityFrame extends JFrame {
 
         setLayout(new BorderLayout());
 
-        GravityComponent gravityComponent = new GravityComponent();
-        GravityController gravityController = new GravityController(gravityComponent);
+        JTextField xField = new JTextField("50");
+        JTextField yField = new JTextField("50");
+        JTextField tField = new JTextField("15");
+        JLabel angleLabel = new JLabel(" ");
+        JLabel magLabel = new JLabel(" ");
 
         JButton button = new JButton("Draw");
         JLabel xLabel = new JLabel("X Field:");
         JLabel yLabel = new JLabel("Y Field:");
         JLabel tLabel = new JLabel("Time:");
 
+        GravityComponent gravityComponent = new GravityComponent();
+        GravityController gravityController = new GravityController(gravityComponent, tField, xField, yField, angleLabel, magLabel);
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gravityController.updateForce();
+                gravityController.updateForce(
+                        Double.parseDouble(xField.getText()),
+                        Double.parseDouble(yField.getText())
+                );
             }
         });
 
         gravityComponent.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gravityController.updateForceAtEvent(e);
+                gravityController.updateForceAtEvent(e.getX(), e.getY());
             }
 
             @Override
@@ -55,7 +64,7 @@ public class GravityFrame extends JFrame {
         gravityComponent.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                gravityController.updateForceAtEvent(e);
+                gravityController.updateForceAtEvent(e.getX(), e.getY());
             }
 
             @Override
@@ -66,14 +75,14 @@ public class GravityFrame extends JFrame {
         JPanel northPanel = new JPanel();
 
         northPanel.add(xLabel);
-        northPanel.add(gravityController.getxField());
+        northPanel.add(xField);
         northPanel.add(yLabel);
-        northPanel.add(gravityController.getyField());
+        northPanel.add(yField);
         northPanel.add(tLabel);
-        northPanel.add(gravityController.gettField());
+        northPanel.add(tField);
         northPanel.add(button);
-        northPanel.add(gravityController.getMagLabel());
-        northPanel.add(gravityController.getAngleLabel());
+        northPanel.add(magLabel);
+        northPanel.add(angleLabel);
 
         add(northPanel, BorderLayout.NORTH);
         add(gravityComponent, BorderLayout.CENTER);

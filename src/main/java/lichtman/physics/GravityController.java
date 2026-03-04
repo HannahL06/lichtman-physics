@@ -1,55 +1,38 @@
 package lichtman.physics;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
 
 // controller job - takes input, modifies the model, and update the views.
 public class GravityController {
     private final GravityComponent gravComp;
-    private final JTextField xField = new JTextField("50");
-    private final JTextField yField = new JTextField("50");
-    private final JTextField tField = new JTextField("15");
-    private final JLabel angleLabel = new JLabel(" ");
-    private final JLabel magLabel = new JLabel(" ");
+    private final JTextField xField;
+    private final JTextField yField;
+    private final JTextField tField;
+    private final JLabel angleLabel;
+    private final JLabel magLabel;
 
-    public GravityController(GravityComponent gc) {
+
+    public GravityController(GravityComponent gc, JTextField newtField, JTextField newxField, JTextField newyField,
+                             JLabel aLabel, JLabel mLabel) {
         gravComp = gc;
+        xField = newxField;
+        yField = newyField;
+        tField = newtField;
+        angleLabel = aLabel;
+        magLabel = mLabel;
     }
 
-    public JTextField getxField() {
-        return xField;
-    }
-
-    public JTextField getyField() {
-        return yField;
-    }
-
-    public JTextField gettField() {
-        return tField;
-    }
-
-    public JLabel getAngleLabel() {
-        return angleLabel;
-    }
-
-    public JLabel getMagLabel() {
-        return magLabel;
-    }
-
-    public void updateForce() {
-        gravComp.setForce(new Force(
-                Double.parseDouble(xField.getText()),
-                Double.parseDouble(yField.getText()))
-        );
+    public void updateForce(double x, double y) {
+        gravComp.setForce(new Force(x, y));
         gravComp.setTime(Double.parseDouble(tField.getText()));
         angleLabel.setText("Angle:" + String.format("%.2f", gravComp.getForce().getDegrees()));
         magLabel.setText("Magnitude: " + String.format("%.2f", gravComp.getForce().getMagnitude()));
     }
 
-    public void updateForceAtEvent(MouseEvent e) {
-        gravComp.setForce(new Force(e.getX(), gravComp.getHeight() - e.getY()));
-        xField.setText(String.valueOf(e.getX()));
-        yField.setText(String.valueOf(e.getY()));
+    public void updateForceAtEvent(double x, double y) {
+        gravComp.setForce(new Force(x, gravComp.getHeight() - y));
+        xField.setText(String.valueOf(x));
+        yField.setText(String.valueOf(y));
         angleLabel.setText("Angle:" + String.format("%.2f", gravComp.getForce().getDegrees()));
         magLabel.setText("Magnitude: " + String.format("%.2f", gravComp.getForce().getMagnitude()));
     }
