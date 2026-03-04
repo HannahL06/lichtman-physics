@@ -43,7 +43,7 @@ public class GravityFrame extends JFrame {
         gravityComponent.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gravityController.updateForceAtEvent(e.getX(), e.getY());
+                gravityController.updateForce(e.getX(), e.getY());
             }
 
             @Override
@@ -66,7 +66,7 @@ public class GravityFrame extends JFrame {
         gravityComponent.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                gravityController.updateForceAtEvent(e.getX(), e.getY());
+                gravityController.updateForce(e.getX(), e.getY());
             }
 
             @Override
