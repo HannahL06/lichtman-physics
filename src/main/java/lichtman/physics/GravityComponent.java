@@ -7,9 +7,9 @@ public class GravityComponent extends JComponent {
     private Force force;
     private double time;
 
-    public GravityComponent(Force f, double t) {
-        force = new Force(f.getX(), f.getY());
-        time = t;
+    public GravityComponent() {
+        force = new Force(0, 0);
+        time = 10;
     }
 
     public void setTime(double d) {
