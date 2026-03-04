@@ -26,7 +26,9 @@ public class GravityFrame extends JFrame {
         JLabel tLabel = new JLabel("Time:");
 
         GravityComponent gravityComponent = new GravityComponent();
-        GravityController gravityController = new GravityController(gravityComponent, tField, xField, yField, angleLabel, magLabel);
+        GravityController gravityController = new GravityController(
+                gravityComponent, tField, xField, yField, angleLabel, magLabel
+        );
 
         button.addActionListener(new ActionListener() {
             @Override
