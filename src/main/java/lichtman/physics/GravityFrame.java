@@ -2,8 +2,9 @@ package lichtman.physics;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+
+// new Force(37.0365, 28.9360)
 
 public class GravityFrame extends JFrame {
     public GravityFrame() {
@@ -14,32 +15,82 @@ public class GravityFrame extends JFrame {
         setLayout(new BorderLayout());
         GravityComponent gravityComponent = new GravityComponent();
 
-        JTextField xField = new JTextField("37.0365");
-        JTextField yField = new JTextField("28.9360");
+        JTextField xField = new JTextField("50");
+        JTextField yField = new JTextField("50");
         JTextField tField = new JTextField("10");
+        JLabel angleLabel = new JLabel(" ");
+        JLabel magLabel = new JLabel(" ");
+        JLabel apexLabel = new JLabel(" ");
 
         JButton button = new JButton("Draw");
         JLabel xLabel = new JLabel("X Field:");
         JLabel yLabel = new JLabel("Y Field:");
         JLabel tLabel = new JLabel("Time:");
 
-        JLabel angleLabel = new JLabel("Angle:" + String.format("%.2f", gravityComponent.getForce().getDegrees()));
-        JLabel magLabel = new JLabel("Magnitude: " + String.format("%.2f", gravityComponent.getForce().getMagnitude()));
+        GravityController gravityController = new GravityController(
+                gravityComponent, tField, xField,
+                yField, angleLabel, magLabel, apexLabel
+        );
 
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gravityComponent.setForce(
-                        new Force(
-                                Double.parseDouble(xField.getText()),
-                                Double.parseDouble(yField.getText())
-                        ));
-                gravityComponent.setTime(Double.parseDouble(tField.getText()));
-                angleLabel.setText("Angle:" + String.format("%.2f", gravityComponent.getForce().getDegrees()));
-                magLabel.setText("Magnitude: " + String.format("%.2f", gravityComponent.getForce().getMagnitude()));
-
+                gravityController.updateForce(
+                        Double.parseDouble(xField.getText()),
+                        Double.parseDouble(yField.getText())
+                );
             }
         });
+
+        gravityComponent.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                gravityController.updateForce(e.getX(), e.getY());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+
+        gravityComponent.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                gravityController.updateForce(e.getX(), e.getY());
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+            }
+        });
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    gravityComponent.repaint();
+                    try {
+                        Thread.sleep(16);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
 
         JPanel northPanel = new JPanel();
 
@@ -52,6 +103,7 @@ public class GravityFrame extends JFrame {
         northPanel.add(button);
         northPanel.add(magLabel);
         northPanel.add(angleLabel);
+        northPanel.add(apexLabel);
 
         add(northPanel, BorderLayout.NORTH);
         add(gravityComponent, BorderLayout.CENTER);

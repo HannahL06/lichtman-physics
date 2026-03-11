@@ -1,5 +1,7 @@
 package lichtman.physics;
 
+import java.util.Objects;
+
 public class Force {
     private final double magnitude;
     private final double degrees;
@@ -34,6 +36,23 @@ public class Force {
         double newY = y + otherForce.getY();
 
         return new Force(newX, newY);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Force force = (Force) o;
+        return Double.compare(magnitude, force.magnitude)
+                == 0 && Double.compare(degrees, force.degrees)
+                == 0 && Double.compare(x, force.x)
+                == 0 && Double.compare(y, force.y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(magnitude, degrees, x, y);
     }
 
     public String toString() {

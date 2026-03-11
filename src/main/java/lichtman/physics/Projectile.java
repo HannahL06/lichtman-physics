@@ -2,7 +2,7 @@ package lichtman.physics;
 
 public class Projectile {
     public static final Force GRAVITY = new Force(0, -9.8);
-
+    private final double[] apexPoint = new double[2];
     private Force force;
     private double x;
     private double y;
@@ -11,6 +11,7 @@ public class Projectile {
         x = nX;
         y = nY;
         force = nF;
+        calculateApex();
     }
 
     public double getX() {
@@ -31,5 +32,14 @@ public class Projectile {
         Force scaledForce = force.scale(inc);
         x += scaledForce.getX();
         y += scaledForce.getY();
+    }
+
+    public double[] getApex() {
+        return apexPoint;
+    }
+
+    private void calculateApex() {
+        apexPoint[0] = (force.getY() / -GRAVITY.getY()) * (force.getX());
+        apexPoint[1] = (force.getY() * force.getY()) / (2 * -GRAVITY.getY());
     }
 }
