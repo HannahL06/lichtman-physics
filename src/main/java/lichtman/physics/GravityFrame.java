@@ -13,21 +13,23 @@ public class GravityFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new BorderLayout());
+        GravityComponent gravityComponent = new GravityComponent();
 
         JTextField xField = new JTextField("50");
         JTextField yField = new JTextField("50");
-        JTextField tField = new JTextField("15");
+        JTextField tField = new JTextField("10");
         JLabel angleLabel = new JLabel(" ");
         JLabel magLabel = new JLabel(" ");
+        JLabel apexLabel = new JLabel(" ");
 
         JButton button = new JButton("Draw");
         JLabel xLabel = new JLabel("X Field:");
         JLabel yLabel = new JLabel("Y Field:");
         JLabel tLabel = new JLabel("Time:");
 
-        GravityComponent gravityComponent = new GravityComponent();
         GravityController gravityController = new GravityController(
-                gravityComponent, tField, xField, yField, angleLabel, magLabel
+                gravityComponent, tField, xField,
+                yField, angleLabel, magLabel, apexLabel
         );
 
         button.addActionListener(new ActionListener() {
@@ -74,6 +76,22 @@ public class GravityFrame extends JFrame {
             }
         });
 
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    gravityComponent.repaint();
+                    try {
+                        Thread.sleep(16);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+
         JPanel northPanel = new JPanel();
 
         northPanel.add(xLabel);
@@ -85,6 +103,7 @@ public class GravityFrame extends JFrame {
         northPanel.add(button);
         northPanel.add(magLabel);
         northPanel.add(angleLabel);
+        northPanel.add(apexLabel);
 
         add(northPanel, BorderLayout.NORTH);
         add(gravityComponent, BorderLayout.CENTER);

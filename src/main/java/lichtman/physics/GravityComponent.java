@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GravityComponent extends JComponent {
+    private final Projectile p;
     private Force force;
     private double time;
 
     public GravityComponent() {
-        force = new Force(0, 0);
+        force = new Force(50, 50);
+        p = new Projectile(0, 0, force);
         time = 10;
     }
 
@@ -25,6 +27,10 @@ public class GravityComponent extends JComponent {
         repaint();
     }
 
+    public double getApex() {
+        return -p.getApex()[1];
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -32,7 +38,7 @@ public class GravityComponent extends JComponent {
         //set origin to bottom left corner
         g.translate(0, getHeight());
 
-        Color graphLineBlue = new Color(84, 200, 223);
+        Color graphLineBlue = new Color(84, 180, 223);
         g.setColor(graphLineBlue);
         for (int i = 0; i < getHeight(); i += 20) {
             g.drawLine(0, -i, getWidth(), -i);
@@ -41,15 +47,18 @@ public class GravityComponent extends JComponent {
             g.drawLine(i, -getHeight(), i, 0);
         }
 
+        //for (double i = 0; i < time; i += 0.001) {
 
-        Projectile p = new Projectile(0, 0, force);
-        Color green = new Color(50, 200, 0);
-        g.setColor(green);
+        g.setColor(Color.DARK_GRAY);
+        g.fillOval((int) (p.getApex()[0]), (int) (-p.getApex()[1]), 7, 7);
 
-        for (double i = 0; i < time; i += 0.001) {
-            p.apply(0.001);
-            g.drawOval((int) p.getX(), (int) (-p.getY()), 5, 5);
-        }
+        g.setColor(Color.magenta);
+        p.apply(0.03);
+        g.fillOval((int) p.getX(), (int) (-p.getY()), 10, 10);
+
+        //g.fillOval((int) p.getApex()[0], (int) -p.getApex()[1], 10, 10);
+
+        //}
     }
 }
 

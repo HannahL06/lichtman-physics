@@ -10,6 +10,7 @@ public class GravityController {
     private final JTextField tField;
     private final JLabel angleLabel;
     private final JLabel magLabel;
+    private final JLabel apexLabel;
 
 
     public GravityController(GravityComponent gc,
@@ -17,13 +18,15 @@ public class GravityController {
                              JTextField newxField,
                              JTextField newyField,
                              JLabel aLabel,
-                             JLabel mLabel) {
+                             JLabel mLabel,
+                             JLabel apLabel) {
         gravComp = gc;
         xField = newxField;
         yField = newyField;
         tField = newtField;
         angleLabel = aLabel;
         magLabel = mLabel;
+        apexLabel = apLabel;
     }
 
     public void updateForce(double x, double y) {
@@ -34,5 +37,6 @@ public class GravityController {
         yField.setText(String.valueOf(force.getY()));
         angleLabel.setText("Angle: " + String.format("%.2f", force.getDegrees()));
         magLabel.setText("Magnitude: " + String.format("%.2f", force.getMagnitude()));
+        apexLabel.setText("Apex: " + String.format("%.2f", -gravComp.getApex()));
     }
 }
