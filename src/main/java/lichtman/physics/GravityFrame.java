@@ -12,7 +12,7 @@ public class GravityFrame extends JFrame {
         setTitle("Gravity Frames");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new BorderLayout());
+        setLayout(new GridBagLayout());
         GravityComponent gravityComponent = new GravityComponent();
 
         JTextField xField = new JTextField("50");
@@ -92,21 +92,75 @@ public class GravityFrame extends JFrame {
         Thread thread = new Thread(runnable);
         thread.start();
 
-        JPanel northPanel = new JPanel();
 
-        northPanel.add(xLabel);
-        northPanel.add(xField);
-        northPanel.add(yLabel);
-        northPanel.add(yField);
-        northPanel.add(tLabel);
-        northPanel.add(tField);
-        northPanel.add(button);
-        northPanel.add(magLabel);
-        northPanel.add(angleLabel);
-        northPanel.add(apexLabel);
+        GridBagConstraints constraints;
 
-        add(northPanel, BorderLayout.NORTH);
-        add(gravityComponent, BorderLayout.CENTER);
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        add(xLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(xField, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        add(yLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(yField, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        add(tLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(tField, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        add(angleLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
+        add(magLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        constraints.gridwidth = 2;
+        add(apexLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 6;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.NORTH;
+        add(button, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 2;
+        constraints.gridy = 0;
+        constraints.gridheight = 7;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.weighty = 1;
+        constraints.weightx = 1;
+        add(gravityComponent, constraints);
     }
 
     public static void main(String[] args) {

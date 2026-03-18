@@ -35,8 +35,8 @@ public class GravityController {
         gravComp.setTime(Double.parseDouble(tField.getText()));
         xField.setText(String.valueOf(force.getX()));
         yField.setText(String.valueOf(force.getY()));
-        angleLabel.setText("Angle: " + String.format("%.2f", force.getDegrees()));
-        magLabel.setText("Magnitude: " + String.format("%.2f", force.getMagnitude()));
-        apexLabel.setText("Apex: " + String.format("%.2f", -gravComp.getApex()));
+        angleLabel.setText("Angle: " + String.format("%.4f", force.getDegrees()));
+        magLabel.setText("Magnitude: " + String.format("%.4f", force.getMagnitude()));
+        apexLabel.setText("Apex: " + String.format("%.4f", -gravComp.getApex()));
     }
 }

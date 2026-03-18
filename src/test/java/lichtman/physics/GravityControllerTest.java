@@ -33,9 +33,9 @@ class GravityControllerTest {
         verify(gComp).setForce(new Force(7, 5));
         verify(xField).setText("7.0");
         verify(yField).setText("5.0");
-        verify(magLabel).setText("Magnitude: 8.60");
-        verify(angleLabel).setText("Angle: 35.54");
+        verify(magLabel).setText("Magnitude: 8.6023");
+        verify(angleLabel).setText("Angle: 35.5377");
         verify(gComp).setTime(15);
-        verify(apexLabel).setText("Apex: 127.55");
+        verify(apexLabel).setText("Apex: 127.5500");
     }
 }
